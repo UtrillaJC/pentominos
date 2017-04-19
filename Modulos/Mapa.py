@@ -1,9 +1,9 @@
 # Clase Mapa
 class Mapa:
-    # Constructor. Recibe como parámetro una lista de lista que
+    # Constructor. Recibe como parámetro una lista de listas que
     # representa las casillas que tendrá y el tipo de casilla.
-    def __init__(self, celdas):
-        self.celdas = celdas
+    def __init__(self, filas, columnas):
+        self.celdas = [([0] * columnas) for i in range(filas)]
 
     # Método que devuelve cuántas columnas hay
     def tamaño_hor(self):
