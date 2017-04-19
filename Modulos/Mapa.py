@@ -14,5 +14,21 @@ class Mapa:
         return len(self.celdas)
 
     # Método que devuelve el tipo de celda
-    def tipo_celda(self, fila, columna):
+    def valor_celda(self, fila, columna):
         return self.celdas[fila][columna]
+
+    # Muestra en pantalla el mapa
+    def mostrarMapa(self):
+        for i in self.celdas:
+            print("+-----" * self.tamaño_hor() + "+")
+
+            primero = True
+            for j in i:
+                print("|     ", end="")
+
+            print("|")
+
+        print("+-----" * self.tamaño_hor() + "+")
+
+
+
