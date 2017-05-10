@@ -7,6 +7,7 @@ class Mapa:
     def __init__(self, filas, columnas):
         self.map = [([0] * columnas) for i in range(filas)]
 
+
     # Método que devuelve cuántas columnas hay
     def tamaño_filas(self):
         return len(self.map[0])
@@ -34,12 +35,13 @@ class Mapa:
 
         self.map[fila][columna] = 0
 
-    """
+    # Por terminar
+    #
     def anadirFicha(self, ficha):
         if isinstance(ficha, Modulos.Fichas):
-            for tupla in ficha:
-                print()
-    """
+            for algo in ficha:
+                print(algo)
+    #
 
     # Muestra en pantalla el mapa
     def mostrarMapa(self):
@@ -57,6 +59,3 @@ class Mapa:
             print("|")
 
         print("+-----" * self.tamaño_filas() + "+")
-
-
-

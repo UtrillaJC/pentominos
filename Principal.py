@@ -25,7 +25,11 @@ while not columnas:
 
 # Líneas de prueba
 mapa_prueba = map.Mapa(filas, columnas)
-mapa_prueba.marcarCasilla(1, 1)
-# mapa_prueba.marcarCasilla(1, 1)     # ERROR: debe saltar
+mapa_prueba.marcarCasilla(1, 2)
+# mapa_prueba.marcarCasilla(1, 1)
 mapa_prueba.mostrarMapa()
-fichas = fic.Fichas()
+
+# Probando la clase fichas
+ficha = fic.Fichas()
+# ficha.listadoFichas()
+ficha.dibujarFichas('Z')
