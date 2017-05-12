@@ -101,3 +101,7 @@ class Fichas:
         for keys, values in self.dicFichas.items():
             print(keys)
             print(values)
+
+    # Método que se utiliza para coger una fecha de todas las disponibles
+    def cogerFicha (self, ficha, numero):
+        return self.dicFichas[ficha][numero]

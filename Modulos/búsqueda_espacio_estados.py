@@ -2,6 +2,7 @@ import collections
 import heapq
 import types
 
+
 class ListaNodos(collections.deque):
     def añadir(self, nodo):
         self.append(nodo)
@@ -13,13 +14,16 @@ class ListaNodos(collections.deque):
         return any(x.estado == nodo.estado
                    for x in self)
 
+
 class PilaNodos(ListaNodos):
     def sacar(self):
         return self.pop()
 
+
 class ColaNodos(ListaNodos):
     def sacar(self):
         return self.popleft()
+
 
 class ColaNodosConPrioridad:
     def __init__(self):
@@ -43,6 +47,7 @@ class ColaNodosConPrioridad:
         return any(x[2].estado == nodo.estado and
                    x[2].heurística <= nodo.heurística
                    for x in self.nodos)
+
 
 class NodoSimple:
     def __init__(self, estado, padre=None, acción=None):
@@ -161,6 +166,7 @@ class BúsquedaEnProfundidad(BúsquedaGeneral):
                         self.append(último_nodo)
                         break
             self.append(nodo)
+
         self.explorados.añadir = types.MethodType(añadir_vaciando_rama,
                                                   self.explorados)
 
@@ -188,6 +194,7 @@ class BúsquedaEnProfundidadIterativa:
             if solución:
                 return solución
 
+
 # Clase
 class BúsquedaPrimeroElMejor(BúsquedaGeneral):
     def __init__(self, f, detallado=False):
@@ -202,12 +209,15 @@ class BúsquedaPrimeroElMejor(BúsquedaGeneral):
                                    for x in self),
             self.explorados)
 
+
 # Clase BúsquedaÓptima: implementa el algoritmo de búsqueda óptima.
 class BúsquedaÓptima(BúsquedaPrimeroElMejor):
     def __init__(self, detallado=False):
         def coste(nodo):
             return nodo.coste
+
         super().__init__(coste, detallado)
+
 
 # Clase BúsquedaAEstrella: implementa el algoritmo de A*.
 # Algoritmo A*: consiste en seleccionar el nodo que se estima más cerca de
@@ -219,4 +229,5 @@ class BúsquedaAEstrella(BúsquedaPrimeroElMejor):
 
         def f(nodo):
             return coste(nodo) + h(nodo)
+
         super().__init__(f, detallado)
