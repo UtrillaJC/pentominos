@@ -1,5 +1,11 @@
 # Clase Acción: para cada una de las acciones que se definan en un problema
-#               utilizaremos esta clase
+#               utilizaremos esta clase.
+"""
+                Normalmente, cada una de las acciones se pueden agrupar en
+                distintos tipos, cada uno de los cuales puede ser implemen-
+                tado de manera abstracta mediante una clase que herede de
+                la clase Acción.
+"""
 class Acción:
 
     # Constructor

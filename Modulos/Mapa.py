@@ -6,7 +6,8 @@ class Mapa:
     # y crea un mapa.
     def __init__(self, filas, columnas):
         self.map = [([0] * columnas) for i in range(filas)]
-
+        self.filas = filas
+        self.columnas = columnas
 
     # Método que devuelve cuántas columnas hay
     def tamaño_filas(self):
@@ -17,7 +18,7 @@ class Mapa:
         return len(self.map)
 
     # Método que devuelve si una celda está ocupada o no
-    def valor_celda(self, fila, columna):
+    def valor_casilla(self, fila, columna):
         return self.map[fila][columna]
 
     # Método que marca una casilla del mapa
@@ -93,3 +94,18 @@ class Mapa:
             print("|")
 
         print("+-----" * self.tamaño_filas() + "+")
+
+    # Método que calcula las casillas que están marcadas en el mapa
+    def numCasillasMarcadas(self):
+        contador = 0            # Cuenta el nº casillas marcadas
+
+        for i in self.map:
+            for j in i:
+                if j == 1:
+                    contador += 1
+
+        return contador
+
+    # Método que calcula las casillas que están desmarcadas en el mapa
+    def numCasillasDesmarcadas (self):
+        return (self.filas * self.columnas) - self.numCasillasMarcadas()
