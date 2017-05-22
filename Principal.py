@@ -1,6 +1,7 @@
 # ----------------------------- MODULOS -----------------------------
 import Modulos.Mapa as map
 import Modulos.Fichas as fic
+import Modulos.RellenarMapa as accion
 import Modulos.problema_espacio_estados as probee
 import Modulos.búsqueda_espacio_estados as busquee
 import copy
@@ -35,25 +36,8 @@ ro completamente nuevo e independiente.
 
  - Paso 4: crear las instancias de la clase problema_espacio_estados.
 """
-#mapa = map.Mapa(filas, columnas)
-
-# Paso 1: definición de los estados del problema.
-#estadoInicial = (None, None, 0,0)
-
-# Paso 2: definición de las funciones aplicabilidad y aplicación
-#    - Método ponerFicha:
-#         · Aplicabilidad: el mapa tiene los huecos vacíos de la ficha a
-#                          partir de las coordenadas x, y.
-
-
-#    - Método quitarFicha:
-#         · Aplicabilidad: la ficha de la posición x, y coincide con la
-#                          ficha que quiero eliminar.
-
-
-
-# ------------------------ PRUEBAS DE LAS CLASES ------------------------
 # Atributos
+fichas = fic.Fichas()
 filas = None
 columnas = None
 mapa_prueba = None
@@ -72,29 +56,62 @@ while not columnas:
     except ValueError:
         print("Los datos introducidos no son correctos")
 
-# Líneas de prueba
-mapa_prueba = map.Mapa(filas, columnas)
-# mapa_prueba.marcarCasilla(1, 2)
-# mapa_prueba.marcarCasilla(1, 1)
-mapa_prueba.mostrarMapa()
+# Paso 1: definición de los estados del problema.
+mapa = map.Mapa(filas, columnas)
+estadoInicial = mapa
+estadoInicial.mostrarMapa()
+# estadoInicial.marcarCasilla(0,0)
+# print(str(estadoInicial.verificarFichaEnMapa(0,0,fichas.cogerFicha('I', 0))))
 
-# Probando la clase fichas
-ficha = fic.Fichas()
-# ficha.listadoFichas()
-ficha.dibujarFichas('V')
-miFicha1 = ficha.cogerFicha('Z', 3)
-print("Añadimos la ficha: ")
-mapa_prueba.anadirFicha(0, 0, miFicha1)
-print("Volvemos a añadir la misma ficha: ")
-mapa_prueba.anadirFicha(0, 0, miFicha1)
-print("Añadimos la ficha V:")
-
-print("Coger ficha: " + str(ficha.cogerFicha('V', 3)))
-mapa_prueba.anadirFicha(1,1, ficha.cogerFicha("V", 3))
+miFicha = fichas.cogerFicha('I', 0)
+x = 0
+y = 0
 
 
-mapa_prueba.mostrarMapa()
-mapa_prueba.quitarFicha(0, 0, miFicha1)
-mapa_prueba.mostrarMapa()
-print("El nº de casillas marcadas es: " + str(mapa_prueba.numCasillasMarcadas()))
-print("El nº de casillas desmarcadas es: " + str(mapa_prueba.numCasillasDesmarcadas()))
+# Paso 2: definición de las funciones aplicabilidad y aplicación
+#    - Método rellenarMapa:
+#         · Aplicabilidad: el mapa tiene los huecos vacíos de la ficha a
+#                          partir de las coordenadas x, y.
+
+# - Paso 2.1: definimos el coste de las acciones (si es necesario).
+
+# - Paso 3: definir las acciones correspondientes del problema.
+
+acciones = []
+
+# DUDA: ¿Habría que hacer un filtrado de las acciones?
+for keys, values in fichas.dicFichas.items():
+    for x in range(0, columnas, 1):
+        for y in range(0, filas, 1):
+            # Borramos aquellas acciones que de antemano no sean posibles
+            # porque el hecho de aplicarlo ya nos dice que no se puede a-
+            # plicar.
+            fueraLimites = False
+
+            for tupla in values.listaPosiciones:
+                if x + tupla[0] > columnas - 1 or y + tupla[1] > filas - 1:
+                    fueraLimites = True
+            # Si la acción no está fuera de los límites...
+            if not fueraLimites:
+                # ...creamos la acción
+                acciones.append(accion.RellenarMapa(x, y, values))
+
+# - Paso 4: crear las instancias de la clase problema_espacio_estados.
+
+ProblemaPentominos = probee.ProblemaEspacioEstados(
+    acciones, estadoInicial, []
+)
+
+# print(ProblemaPentominos.es_estado_final(estadoInicial))
+# Dime el nombre de todas las acciones que sean aplicables
+for accion in ProblemaPentominos.acciones_aplicables(estadoInicial):
+    print(accion.nombre)
+
+# Creamos una instancia de búsqueda en anchura Y detallado
+b_profundidad = busquee.BúsquedaEnProfundidad(detallado=True)
+print(b_profundidad.buscar(ProblemaPentominos))
+
+# Dudas:
+#  - ¿Debe continuar hasta recorrer todo el grafo? No, debe continuar hasta que
+#                    encuentre una solución.
+#  - ¿Qué posibles mejoras podríamos añadir?

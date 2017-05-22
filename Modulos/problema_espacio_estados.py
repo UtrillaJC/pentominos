@@ -61,7 +61,8 @@ class ProblemaEspacioEstados:
 
     # ¿es estado un estado final?
     def es_estado_final(self, estado):              # Devuelve si dicho estado es igual a alguno de los
-        return estado in self.estados_finales       # estados finales
+        return estado.numCasillasDesmarcadas() <= 4
+        # return estado in self.estados_finales       # estados finales
 
     # ¿Cuáles son las acciones que podemos aplicar a un estado concreto?
     def acciones_aplicables(self, estado):
