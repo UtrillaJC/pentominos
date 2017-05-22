@@ -1,6 +1,6 @@
 import Modulos.problema_espacio_estados as probee
 import copy
-
+#
 """
 Recuerda: cada acción tiene una aplicabilidad y un efecto. Se heredan los siguientes
           métodos:

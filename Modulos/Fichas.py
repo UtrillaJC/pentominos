@@ -1,4 +1,5 @@
 # Clase Fichas
+#
 import Modulos.Ficha as fic
 
 class Fichas:

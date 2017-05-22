@@ -1,4 +1,5 @@
 # Clase Ficha
+#
 
 class Ficha:
     # Constructor. Crea una ficha del juego

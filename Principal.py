@@ -5,6 +5,7 @@ import Modulos.RellenarMapa as accion
 import Modulos.problema_espacio_estados as probee
 import Modulos.búsqueda_espacio_estados as busquee
 import copy
+#
 
 """
 Para implementar un problema de espacio de estados se pueden hacer uso de las

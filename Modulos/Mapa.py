@@ -1,4 +1,5 @@
 # Clase Mapa
+#
 import Modulos.Fichas
 import Modulos.Ficha as fic
 import copy

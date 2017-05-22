@@ -1,7 +1,7 @@
 import collections
 import heapq
 import types
-
+#
 
 class ListaNodos(collections.deque):
     def añadir(self, nodo):
