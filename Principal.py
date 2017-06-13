@@ -116,3 +116,6 @@ print(b_profundidad.buscar(ProblemaPentominos))
 #  - ¿Debe continuar hasta recorrer todo el grafo? No, debe continuar hasta que
 #                    encuentre una solución.
 #  - ¿Qué posibles mejoras podríamos añadir?
+
+# FALLA en 5 x 6
+# FALLA en 5 x 7

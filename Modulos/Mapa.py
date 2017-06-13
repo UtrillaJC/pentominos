@@ -58,15 +58,26 @@ class Mapa:
 
     # Método que verifica si podemos añadir una ficha en nuestro mapa
     def verificarFichaEnMapa(self, x, y, ficha):
+
+        # Si no corresponden con las instancias...
         if isinstance(ficha, fic.Ficha) and isinstance(x, int) and isinstance(y, int):
+
+            # Recorre cada una de las casillas de la ficha...
             for tupla in ficha.listaPosiciones:
-                # ...comprobamos que no nos salimos del rango...
-                # [DUDA] ¿Y su hacemos este filtrado al definir las acciones?
-                if x + tupla[0] > self.columnas - 1 or y + tupla[1] > self.filas - 1:
-                    return False                     # ...no puedo incluir la ficha
-                # ...y si la casilla ya se encuentra marcada...
-                elif self.map[x + tupla[0]][y + tupla[1]] == 1:
-                    return False                     # ...no puedo incluir la ficha
+
+                # ...comprobamos que no nos salimos del mapa ...
+
+                try:
+                    if x + tupla[0] > self.columnas - 1 or y + tupla[1] > self.filas - 1:
+                        return False                     # ...no puedo incluir la ficha
+                    # ...y si la casilla ya se encuentra marcada...
+                    elif self.map[x + tupla[0]][y + tupla[1]] == 1:
+                            return False                     # ...no puedo incluir la ficha
+                # Si al intentar acceder a las posiciones salta la excepción...
+                except IndexError:
+                    # ... es que nos hemos salido del mapa
+                    return False
+
         else:
             return False
 
