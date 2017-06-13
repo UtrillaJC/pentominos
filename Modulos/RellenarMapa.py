@@ -6,7 +6,7 @@ Recuerda: cada acción tiene una aplicabilidad y un efecto. Se heredan los sigui
           métodos:
                - es_aplicable: este método se redefine
                - aplicar: este método se redefine
-               - coste_de_aplicar:
+               - coste_de_aplicar: este método se redefine
 """
 
 class RellenarMapa (probee.Acción):
@@ -30,3 +30,9 @@ class RellenarMapa (probee.Acción):
 
         # El nuevo estado será el mapa actualizado
         return nuevo_estado
+
+    def coste(self, estado):
+        if self.ficha.letraFicha == 'I':
+            return 2
+        else:
+            return 1

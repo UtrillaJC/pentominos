@@ -78,15 +78,16 @@ y = 0
 
 # - Paso 3: definir las acciones correspondientes del problema.
 
+# Mejora: eliminamos acciones que sabemos que no se van aplicar nunca
 acciones = []
 
-# DUDA: ¿Habría que hacer un filtrado de las acciones?
 for keys, values in fichas.dicFichas.items():
     for x in range(0, columnas, 1):
         for y in range(0, filas, 1):
             # Borramos aquellas acciones que de antemano no sean posibles
             # porque el hecho de aplicarlo ya nos dice que no se puede a-
             # plicar.
+
             fueraLimites = False
 
             for tupla in values.listaPosiciones:
@@ -103,19 +104,39 @@ ProblemaPentominos = probee.ProblemaEspacioEstados(
     acciones, estadoInicial, []
 )
 
-# print(ProblemaPentominos.es_estado_final(estadoInicial))
 # Dime el nombre de todas las acciones que sean aplicables
 for accion in ProblemaPentominos.acciones_aplicables(estadoInicial):
     print(accion.nombre)
 
-# Creamos una instancia de búsqueda en anchura Y detallado
-b_profundidad = busquee.BúsquedaEnProfundidad(detallado=True)
-print(b_profundidad.buscar(ProblemaPentominos))
+# Creamos una instancia por cada búsqueda:
+# BUSQUEDA EN PROFUNDIDAD (DETALLADO):
+# b_profundidad = busquee.BúsquedaEnProfundidad(detallado=True)
+# print(b_profundidad.buscar(ProblemaPentominos))
+
+# BUSQUEDA ÓPTIMA:
+# b_optima = busquee.BúsquedaÓptima(detallado=True)
+# print(b_optima.buscar(ProblemaPentominos))
+
+# Definiendo la heurística necesaria para el algorimo de A*
+def h1(nodo):
+    estado = nodo.estado
+    return estado.numCasillasDesmarcadas()
+
+"""
+def h2(nodo):
+    estado = nodo.estado
+    return estado.numFilasPorRellenar()
+
+def h3(nodo):
+    estado = nodo.estado
+    return estado.numColumnasPorRellenar()
+"""
+
+# BUSQUEDA A* (A ESTRELLA) (DETALLADO):
+b_a_estrella = busquee.BúsquedaAEstrella(h1)
+print(b_a_estrella.buscar(ProblemaPentominos))
 
 # Dudas:
 #  - ¿Debe continuar hasta recorrer todo el grafo? No, debe continuar hasta que
 #                    encuentre una solución.
 #  - ¿Qué posibles mejoras podríamos añadir?
-
-# FALLA en 5 x 6
-# FALLA en 5 x 7

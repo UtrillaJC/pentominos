@@ -72,7 +72,7 @@ class Mapa:
                         return False                     # ...no puedo incluir la ficha
                     # ...y si la casilla ya se encuentra marcada...
                     elif self.map[x + tupla[0]][y + tupla[1]] == 1:
-                            return False                     # ...no puedo incluir la ficha
+                        return False                     # ...no puedo incluir la ficha
                 # Si al intentar acceder a las posiciones salta la excepción...
                 except IndexError:
                     # ... es que nos hemos salido del mapa
@@ -115,7 +115,15 @@ class Mapa:
 
     # Método que calcula las casillas que están desmarcadas en el mapa
     def numCasillasDesmarcadas (self):
-        return (self.filas * self.columnas) - self.numCasillasMarcadas()
+        return (self.filas * self.columnas) - self.numCasillasMarcadas(
+
+    def numFilasPorRellenar(self):
+        contador = 0
+
+        for
+
+    def numColumnasPorRellenar(self):
+        contador = 0
 
     def __str__(self):
         self.mostrarMapa()
