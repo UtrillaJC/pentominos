@@ -109,14 +109,6 @@ for accion in ProblemaPentominos.acciones_aplicables(estadoInicial):
     print(accion.nombre)
 
 
-# Creamos una instancia por cada búsqueda:
-# BUSQUEDA EN PROFUNDIDAD (DETALLADO):
-# b_profundidad = busquee.BúsquedaEnProfundidad(detallado=True)
-# print(b_profundidad.buscar(ProblemaPentominos))
-
-# BUSQUEDA ÓPTIMA:
-# b_optima = busquee.BúsquedaÓptima(detallado=True)
-# print(b_optima.buscar(ProblemaPentominos))
 
 # Definiendo la heurística necesaria para el algorimo de A*
 def h1(nodo):
@@ -136,49 +128,49 @@ def h1(nodo):
                     izquierda = i - 1
 
                     # Comprobamos si nos salimos del rango...
+                    if (arriba <0 ) or (izquierda<0) or (abajo > estado.tamaño_filas() - 1) or (derecha > estado.tamaño_columnas() - 1):
+                        if (arriba < 0) and (izquierda < 0):
+                            # Comprobamos casillas: derecha, abajo
+                            if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, abajo) == 1:
+                                huecosCerrados += 1
+                        elif izquierda < 0 and (abajo > estado.tamaño_filas() - 1):
+                            # Comprobamos casillas: derecha, arriba
+                            if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, arriba) == 1:
+                                huecosCerrados += 1
 
-                    if (arriba < 0) and (izquierda < 0):
-                        # Comprobamos casillas: derecha, abajo
-                        if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, abajo) == 1:
-                            huecosCerrados += 1
-                    elif izquierda < 0 and (abajo > estado.tamaño_filas() - 1):
-                        # Comprobamos casillas: derecha, arriba
-                        if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, arriba) == 1:
-                            huecosCerrados += 1
+                        elif (abajo > estado.tamaño_filas() - 1) and (derecha > estado.tamaño_columnas() - 1):
+                            # Comprobamos casillas: arriba, izquierda
+                            if estado.valor_casilla(i, arriba) == 1 and estado.valor_casilla(izquierda, j) == 1:
+                                huecosCerrados += 1
 
-                    elif (abajo > estado.tamaño_filas() - 1) and (derecha > estado.tamaño_columnas() - 1):
-                        # Comprobamos casillas: arriba, izquierda
-                        if estado.valor_casilla(i, arriba) == 1 and estado.valor_casilla(izquierda, j) == 1:
-                            huecosCerrados += 1
+                        elif arriba < 0 and (derecha > estado.tamaño_columnas() - 1):
+                            # Comprobamos casillas: abajo, izquierda
+                            if estado.valor_casilla(i, abajo) == 1 and estado.valor_casilla(izquierda, j) == 1:
+                                huecosCerrados += 1
 
-                    elif arriba < 0 and (derecha > estado.tamaño_columnas() - 1):
-                        # Comprobamos casillas: abajo, izquierda
-                        if estado.valor_casilla(i, abajo) == 1 and estado.valor_casilla(izquierda, j) == 1:
-                            huecosCerrados += 1
+                        elif arriba < 0:
+                            # Comprobamos casillas: izquierda, derecha, abajo
+                            if estado.valor_casilla(izquierda, j) == 1 and estado.valor_casilla(derecha, j) == 1 \
+                                    and estado.valor_casilla(i, abajo) == 1:
+                                huecosCerrados += 1
 
-                    elif arriba < 0:
-                        # Comprobamos casillas: izquierda, derecha, abajo
-                        if estado.valor_casilla(izquierda, j) == 1 and estado.valor_casilla(derecha, j) == 1 \
-                                and estado.valor_casilla(i, abajo) == 1:
-                            huecosCerrados += 1
+                        elif izquierda < 0:
+                            # Comprobamos casillas: derecha, arriba, abajo
+                            if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, arriba) == 1 \
+                                    and estado.valor_casilla(i, abajo) == 1:
+                                huecosCerrados += 1
 
-                    elif izquierda < 0:
-                        # Comprobamos casillas: derecha, arriba, abajo
-                        if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, arriba) == 1 \
-                                and estado.valor_casilla(i, abajo) == 1:
-                            huecosCerrados += 1
+                        elif abajo > estado.tamaño_filas() - 1:
+                            # Comprobamos casillas: arriba, izquierda, derecha
+                            if estado.valor_casilla(i, arriba) == 1 and estado.valor_casilla(izquierda, j) == 1 \
+                                    and estado.valor_casilla(derecha, j) == 1:
+                                huecosCerrados += 1
 
-                    elif abajo > estado.tamaño_filas() - 1:
-                        # Comprobamos casillas: arriba, izquierda, derecha
-                        if estado.valor_casilla(i, arriba) == 1 and estado.valor_casilla(izquierda, j) == 1 \
-                                and estado.valor_casilla(derecha, j) == 1:
-                            huecosCerrados += 1
-
-                    elif derecha > estado.tamaño_columnas() - 1:
-                        # Comprobamos casillas: izquierda, arriba, abajo
-                        if estado.valor_casilla(izquierda, j) == 1 and estado.valor_casilla(i, arriba) == 1 \
-                                and estado.valor_casilla(i, abajo) == 1:
-                            huecosCerrados += 1
+                        elif derecha > estado.tamaño_columnas() - 1:
+                            # Comprobamos casillas: izquierda, arriba, abajo
+                            if estado.valor_casilla(izquierda, j) == 1 and estado.valor_casilla(i, arriba) == 1 \
+                                    and estado.valor_casilla(i, abajo) == 1:
+                                huecosCerrados += 1
                     # Si no se sale del rango, comprobamos casillas: arriba, abajo, derecha, izquierda
                     elif estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(izquierda, j) == 1 \
                             and estado.valor_casilla(i, arriba) == 1 and estado.valor_casilla(i, abajo) == 1:
@@ -187,8 +179,24 @@ def h1(nodo):
     return huecosCerrados
 
 # BUSQUEDA A* (A ESTRELLA) (DETALLADO):
-b_a_estrella = busquee.BúsquedaAEstrella(h1)
-print(b_a_estrella.buscar(ProblemaPentominos))
+# b_a_estrella = busquee.BúsquedaAEstrella(h1)
+# print(b_a_estrella.buscar(ProblemaPentominos))
+
+
+# Creamos una instancia por cada búsqueda:
+# BUSQUEDA EN PROFUNDIDAD (DETALLADO):
+# b_profundidad = busquee.BúsquedaEnProfundidad(detallado=True)
+# print(b_profundidad.buscar(ProblemaPentominos))
+
+# BUSQUEDA EN ANCHURA (DETALLADO):
+b_anchura = busquee.BúsquedaEnAnchura(detallado=True)
+print(b_anchura.buscar(ProblemaPentominos))
+
+# BUSQUEDA ÓPTIMA:
+# b_optima = busquee.BúsquedaÓptima(detallado=True)
+# print(b_optima.buscar(ProblemaPentominos))
+
+
 
 # Dudas:
 #  - ¿Debe continuar hasta recorrer todo el grafo? No, debe continuar hasta que
