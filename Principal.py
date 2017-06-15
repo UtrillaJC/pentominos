@@ -5,6 +5,7 @@ import Modulos.RellenarMapa as accion
 import Modulos.problema_espacio_estados as probee
 import Modulos.búsqueda_espacio_estados as busquee
 import copy
+
 #
 
 """
@@ -68,7 +69,6 @@ miFicha = fichas.cogerFicha('I', 0)
 x = 0
 y = 0
 
-
 # Paso 2: definición de las funciones aplicabilidad y aplicación
 #    - Método rellenarMapa:
 #         · Aplicabilidad: el mapa tiene los huecos vacíos de la ficha a
@@ -108,6 +108,7 @@ ProblemaPentominos = probee.ProblemaEspacioEstados(
 for accion in ProblemaPentominos.acciones_aplicables(estadoInicial):
     print(accion.nombre)
 
+
 # Creamos una instancia por cada búsqueda:
 # BUSQUEDA EN PROFUNDIDAD (DETALLADO):
 # b_profundidad = busquee.BúsquedaEnProfundidad(detallado=True)
@@ -120,17 +121,70 @@ for accion in ProblemaPentominos.acciones_aplicables(estadoInicial):
 # Definiendo la heurística necesaria para el algorimo de A*
 def h1(nodo):
     estado = nodo.estado
-    return estado.numCasillasDesmarcadas()
 
-"""
-def h2(nodo):
-    estado = nodo.estado
-    return estado.numFilasPorRellenar()
+    huecosCerrados = 0
 
-def h3(nodo):
-    estado = nodo.estado
-    return estado.numColumnasPorRellenar()
-"""
+    for i in range(0, estado.tamaño_filas(), 1):
+        if __name__ == '__main__':
+            for j in range(0, estado.tamaño_columnas(), 1):
+                # Si la casilla está desmarcada...
+                if estado.valor_casilla(i, j) == 0:
+                    # Calculamos los índices...
+                    arriba = j - 1
+                    abajo = j + 1
+                    derecha = i + 1
+                    izquierda = i - 1
+
+                    # Comprobamos si nos salimos del rango...
+
+                    if (arriba < 0) and (izquierda < 0):
+                        # Comprobamos casillas: derecha, abajo
+                        if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, abajo) == 1:
+                            huecosCerrados += 1
+                    elif izquierda < 0 and (abajo > estado.tamaño_filas() - 1):
+                        # Comprobamos casillas: derecha, arriba
+                        if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, arriba) == 1:
+                            huecosCerrados += 1
+
+                    elif (abajo > estado.tamaño_filas() - 1) and (derecha > estado.tamaño_columnas() - 1):
+                        # Comprobamos casillas: arriba, izquierda
+                        if estado.valor_casilla(i, arriba) == 1 and estado.valor_casilla(izquierda, j) == 1:
+                            huecosCerrados += 1
+
+                    elif arriba < 0 and (derecha > estado.tamaño_columnas() - 1):
+                        # Comprobamos casillas: abajo, izquierda
+                        if estado.valor_casilla(i, abajo) == 1 and estado.valor_casilla(izquierda, j) == 1:
+                            huecosCerrados += 1
+
+                    elif arriba < 0:
+                        # Comprobamos casillas: izquierda, derecha, abajo
+                        if estado.valor_casilla(izquierda, j) == 1 and estado.valor_casilla(derecha, j) == 1 \
+                                and estado.valor_casilla(i, abajo) == 1:
+                            huecosCerrados += 1
+
+                    elif izquierda < 0:
+                        # Comprobamos casillas: derecha, arriba, abajo
+                        if estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(i, arriba) == 1 \
+                                and estado.valor_casilla(i, abajo) == 1:
+                            huecosCerrados += 1
+
+                    elif abajo > estado.tamaño_filas() - 1:
+                        # Comprobamos casillas: arriba, izquierda, derecha
+                        if estado.valor_casilla(i, arriba) == 1 and estado.valor_casilla(izquierda, j) == 1 \
+                                and estado.valor_casilla(derecha, j) == 1:
+                            huecosCerrados += 1
+
+                    elif derecha > estado.tamaño_columnas() - 1:
+                        # Comprobamos casillas: izquierda, arriba, abajo
+                        if estado.valor_casilla(izquierda, j) == 1 and estado.valor_casilla(i, arriba) == 1 \
+                                and estado.valor_casilla(i, abajo) == 1:
+                            huecosCerrados += 1
+                    # Si no se sale del rango, comprobamos casillas: arriba, abajo, derecha, izquierda
+                    elif estado.valor_casilla(derecha, j) == 1 and estado.valor_casilla(izquierda, j) == 1 \
+                            and estado.valor_casilla(i, arriba) == 1 and estado.valor_casilla(i, abajo) == 1:
+                        huecosCerrados += 1
+
+    return huecosCerrados
 
 # BUSQUEDA A* (A ESTRELLA) (DETALLADO):
 b_a_estrella = busquee.BúsquedaAEstrella(h1)
@@ -140,3 +194,6 @@ print(b_a_estrella.buscar(ProblemaPentominos))
 #  - ¿Debe continuar hasta recorrer todo el grafo? No, debe continuar hasta que
 #                    encuentre una solución.
 #  - ¿Qué posibles mejoras podríamos añadir?
+
+# ¿Cuantas soluciones para un mismo tablero?
+# Huecos aleatorios.

@@ -115,15 +115,8 @@ class Mapa:
 
     # Método que calcula las casillas que están desmarcadas en el mapa
     def numCasillasDesmarcadas (self):
-        return (self.filas * self.columnas) - self.numCasillasMarcadas(
+        return (self.filas * self.columnas) - self.numCasillasMarcadas()
 
-    def numFilasPorRellenar(self):
-        contador = 0
-
-        for
-
-    def numColumnasPorRellenar(self):
-        contador = 0
 
     def __str__(self):
         self.mostrarMapa()
