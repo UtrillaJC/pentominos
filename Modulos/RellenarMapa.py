@@ -1,15 +1,7 @@
 import Modulos.problema_espacio_estados as probee
 import copy
-#
-"""
-Recuerda: cada acción tiene una aplicabilidad y un efecto. Se heredan los siguientes
-          métodos:
-               - es_aplicable: este método se redefine
-               - aplicar: este método se redefine
-               - coste_de_aplicar: este método se redefine
-"""
 
-class RellenarMapa (probee.Acción):
+class RellenarMapa(probee.Acción):
     # Constructor
     def __init__(self, x, y, ficha):
         nombre = 'Ficha {} en pos.({},{})'.format(ficha, x, y)
@@ -17,6 +9,7 @@ class RellenarMapa (probee.Acción):
         self.x = x
         self.y = y
         self.ficha = ficha
+
 
     def es_aplicable(self, estado):
         # El mapa tiene los huevos vacíos de una ficha a partir de las coordenadas x, y
@@ -32,7 +25,9 @@ class RellenarMapa (probee.Acción):
         return nuevo_estado
 
     def coste(self, estado):
-        if self.ficha.letraFicha == 'I':
+        """if self.ficha.letraFicha == 'I':
             return 2
         else:
             return 1
+        """
+        return 1

@@ -82,7 +82,7 @@ class Fichas:
                            'Z2': fic.Ficha('Z', 2, [(0, 1), (0, 2), (1, 1), (2, 0), (2, 1)]),
                            'Z3': fic.Ficha('Z', 3, [(0, 0), (1, 0), (1, 1), (1, 2), (2, 2)])
                            }
-    """
+
     # Método que dibuja las fichas en pantalla de un tipo concreto
     def dibujarFichas(self, tipoFicha):
         # Por cada una de las fichas del tipo indicado...
@@ -97,7 +97,6 @@ class Fichas:
 
                 print("")
 
-    """
     # Método que lista por pantalla todas las fichas disponibles
     def listadoFichas(self):
         for keys, values in self.dicFichas.items():
