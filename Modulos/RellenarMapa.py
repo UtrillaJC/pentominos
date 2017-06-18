@@ -10,7 +10,6 @@ class RellenarMapa(probee.Acción):
         self.y = y
         self.ficha = ficha
 
-
     def es_aplicable(self, estado):
         # El mapa tiene los huevos vacíos de una ficha a partir de las coordenadas x, y
         return estado.verificarFichaEnMapa(self.x, self.y, self.ficha)

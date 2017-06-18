@@ -66,7 +66,7 @@ class Mapa:
                 # ...comprobamos que no nos salimos del mapa ...
 
                 try:
-                    if x + tupla[0] > self.numeroColumnas() - 1 or y + tupla[1] > self.numeroFilas() - 1:
+                    if x + tupla[0] > self.numeroColumnas() or y + tupla[1] > self.numeroFilas():
                         return False                     # ...no puedo incluir la ficha
                     # ...y si la casilla ya se encuentra marcada...
                     elif self.map[x + tupla[0]][y + tupla[1]] == 1:

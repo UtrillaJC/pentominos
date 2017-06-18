@@ -218,7 +218,6 @@ class BúsquedaÓptima(BúsquedaPrimeroElMejor):
 
         super().__init__(coste, detallado)
 
-
 # Clase BúsquedaAEstrella: implementa el algoritmo de A*.
 # Algoritmo A*: consiste en seleccionar el nodo que se estima más cerca de
 #               la solución optima en función de una/s funcion/es heurística.

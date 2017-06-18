@@ -41,13 +41,18 @@ def definicionProblema():
     #         nes en las que partiendo de una coordenada (x,y), se sa-
     #         del mapa
 
+    # De cada una de las fichas
     for keys, values in fichas.dicFichas.items():
-        for x in range(0, numColumnas, 1):
-            for y in range(0, numFilas, 1):
+
+        # Calculamos para cada una de las coordenadas (x,y)...
+        for x in range(0, numFilas, 1):
+            for y in range(0, numColumnas, 1):
+
+                # ...Si la acción es aplicable
                 fueraLimites = False
 
                 for tupla in values.listaPosiciones:
-                    if x + tupla[0] > numColumnas - 1 or y + tupla[1] > numFilas - 1:
+                    if x + tupla[0] > numColumnas or y + tupla[1] > numFilas:
                         fueraLimites = True
                 # Si la acción no está fuera de los límites...
                 if not fueraLimites:
@@ -64,6 +69,10 @@ def definicionProblema():
     problemaPentominos = probee.ProblemaEspacioEstados(
         acciones, estadoInicial, []
     )
+
+    for laaccion in problemaPentominos.acciones_aplicables(estadoInicial):
+        print(laaccion.nombre)
+
 
 # h1: heurística que cuenta el número de huecos vacíos
 # ------------------------ SCRIPT PRINCIPAL ------------------------
@@ -191,9 +200,9 @@ def menuBusquedaNoInformada():
     if eleccion.lower() == '1':
         bProfundidad = busquee.BúsquedaEnProfundidad(detallado=True)
         print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bProfundidad.buscar, problemaPentominos),
-                                                        number=1))
+                                                         number=1))
         # print("Tiempo de ejecución: %f" % timeit.repeat(functools.partial(bProfundidad.buscar, problemaPentominos),
-        #                                               repeat=2, number=1))
+        #                                               repeat=4, number=1))
         input("Pulse una tecla para volver al menú principal")
     elif eleccion.lower() == '2':
         bAnchura = busquee.BúsquedaEnAnchura(detallado=True)
