@@ -40,6 +40,7 @@ def definicionProblema():
     #         que no se pueden aplicar. Nos referimos a aquellas accio-
     #         nes en las que partiendo de una coordenada (x,y), se sa-
     #         del mapa
+
     for keys, values in fichas.dicFichas.items():
         for x in range(0, numColumnas, 1):
             for y in range(0, numFilas, 1):
@@ -189,10 +190,11 @@ def menuBusquedaNoInformada():
     # Ejecutamos el algoritmo correspondiente
     if eleccion.lower() == '1':
         bProfundidad = busquee.BúsquedaEnProfundidad(detallado=True)
-        print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bProfundidad.buscar, problemaPentominos),
-                                                        number=1))
+        # print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bProfundidad.buscar, problemaPentominos),
+        #                                               number=1))
         # print("Tiempo de ejecución: %f" % timeit.repeat(functools.partial(bProfundidad.buscar, problemaPentominos),
         #                                               repeat=2, number=1))
+        print(bProfundidad.buscar(problemaPentominos))
         input("Pulse una tecla para volver al menú principal")
     elif eleccion.lower() == '2':
         bAnchura = busquee.BúsquedaEnAnchura(detallado=True)
@@ -207,8 +209,6 @@ def menuBusquedaNoInformada():
         salir()
     else:
         menu_acciones['2']()
-
-    input("Pulse una tecla para volver al menú principal")
     volver()
     return
 

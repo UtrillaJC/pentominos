@@ -87,7 +87,21 @@ class Mapa:
     def mostrarMapa(self):
         print(self.numeroFilas())
         print(self.numeroColumnas())
-        for i in range(0, self.numeroFilas(), 1):
+
+        for i in self.map:
+            print("+-----" * self.numeroColumnas()  + "+")
+
+            for j in i:
+                valorCasilla = " "
+                if j == 1:
+                    valorCasilla = "*"
+
+                print("|  " + valorCasilla + "  ", end="")
+            print("|")
+
+        print("+-----" * self.numeroColumnas() + "+")
+
+        """        for i in range(0, self.numeroFilas(), 1):
 
             print("+------" * self.numeroColumnas() + "+")
 
@@ -105,6 +119,7 @@ class Mapa:
             print("|")
 
         print("+------" * self.numeroColumnas() + "+")
+        """
 
     # Método que calcula las casillas que están marcadas en el mapa
     def numCasillasMarcadas(self):

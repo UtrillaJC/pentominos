@@ -97,6 +97,7 @@ class Fichas:
 
                 print("")
 
+
     # Método que lista por pantalla todas las fichas disponibles
     def listadoFichas(self):
         for keys, values in self.dicFichas.items():
