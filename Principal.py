@@ -190,11 +190,10 @@ def menuBusquedaNoInformada():
     # Ejecutamos el algoritmo correspondiente
     if eleccion.lower() == '1':
         bProfundidad = busquee.BúsquedaEnProfundidad(detallado=True)
-        # print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bProfundidad.buscar, problemaPentominos),
-        #                                               number=1))
+        print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bProfundidad.buscar, problemaPentominos),
+                                                        number=1))
         # print("Tiempo de ejecución: %f" % timeit.repeat(functools.partial(bProfundidad.buscar, problemaPentominos),
         #                                               repeat=2, number=1))
-        print(bProfundidad.buscar(problemaPentominos))
         input("Pulse una tecla para volver al menú principal")
     elif eleccion.lower() == '2':
         bAnchura = busquee.BúsquedaEnAnchura(detallado=True)
