@@ -65,6 +65,7 @@ def definicionProblema():
     )
 
 # h1: heurística que cuenta el número de huecos vacíos
+# ------------------------ SCRIPT PRINCIPAL ------------------------
 def h1(nodo):
     estado = nodo.estado
 
@@ -281,17 +282,4 @@ menu_acciones = {
     '0': salir,
 }
 
-"""
-Para implementar un problema de espacio de estados se pueden hacer uso de las
-clases de objetos proporcionadas por el modulo problema_espacio_estados.
-
-Los alg. de búsqueda están implementados en el módulo busqueda_espacio_estados.
-
-El módulo copy será de utilidad para copiar un estado en otro estado igual, pe-
-ro completamente nuevo e independiente.
-"""
-# Mostramos el menú de opciones
 menuPrincipal()
-
-# ¿Cuantas soluciones para un mismo tablero?
-# Huecos aleatorios.
