@@ -85,8 +85,8 @@ class Mapa:
 
     # Muestra en pantalla el mapa
     def mostrarMapa(self):
-        print(self.numeroFilas())
-        print(self.numeroColumnas())
+        print("Número filas: " + str(self.numeroFilas()))
+        print("Número columnas: " + str(self.numeroColumnas()))
 
         for i in range(0, self.numeroFilas(), 1):
 

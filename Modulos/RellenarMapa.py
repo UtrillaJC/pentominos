@@ -24,9 +24,8 @@ class RellenarMapa(probee.Acción):
         return nuevo_estado
 
     def coste_de_aplicar(self, estado):
-        """if self.ficha.letraFicha == 'I':
-            return 2
+        if self.ficha.letraFicha == 'F' or self.ficha.letraFicha=="P":
+            return 30
         else:
             return 1
-        """
-        return 1
+
