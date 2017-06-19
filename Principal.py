@@ -79,7 +79,7 @@ def definicionProblema():
 def h1(nodo):
     estado = nodo.estado
 
-    huecosCerrados = 0
+    penalizacion = 0
 
     for i in range(0, estado.numeroFilas(), 1):
         for j in range(0, estado.numeroColumnas(), 1):
@@ -97,51 +97,51 @@ def h1(nodo):
                     if (arriba < 0) and (izquierda < 0):
                         # Comprobamos casillas: derecha, abajo
                         if estado.valorCasilla(derecha, j) == 1 and estado.valorCasilla(i, abajo) == 1:
-                            huecosCerrados += 20
+                            penalizacion += 20
                     elif izquierda < 0 and (abajo > estado.numeroFilas() - 1):
                         # Comprobamos casillas: derecha, arriba
                         if estado.valorCasilla(derecha, j) == 1 and estado.valorCasilla(i, arriba) == 1:
-                            huecosCerrados += 20
+                            penalizacion += 20
 
                     elif (abajo > estado.numeroFilas() - 1) and (derecha > estado.numeroColumnas() - 1):
                         # Comprobamos casillas: arriba, izquierda
                         if estado.valorCasilla(i, arriba) == 1 and estado.valorCasilla(izquierda, j) == 1:
-                            huecosCerrados += 20
+                            penalizacion += 20
 
                     elif arriba < 0 and (derecha > estado.numeroColumnas() - 1):
                         # Comprobamos casillas: abajo, izquierda
                         if estado.valorCasilla(i, abajo) == 1 and estado.valorCasilla(izquierda, j) == 1:
-                            huecosCerrados += 20
+                            penalizacion += 20
 
                     elif arriba < 0:
                         # Comprobamos casillas: izquierda, derecha, abajo
                         if estado.valorCasilla(izquierda, j) == 1 and estado.valorCasilla(derecha, j) == 1 \
                                 and estado.valorCasilla(i, abajo) == 1:
-                            huecosCerrados += 20
+                            penalizacion += 20
 
                     elif izquierda < 0:
                         # Comprobamos casillas: derecha, arriba, abajo
                         if estado.valorCasilla(derecha, j) == 1 and estado.valorCasilla(i, arriba) == 1 \
                                 and estado.valorCasilla(i, abajo) == 1:
-                            huecosCerrados += 20
+                            penalizacion += 20
 
                     elif abajo > estado.numeroFilas() - 1:
                         # Comprobamos casillas: arriba, izquierda, derecha
                         if estado.valorCasilla(i, arriba) == 1 and estado.valorCasilla(izquierda, j) == 1 \
                                 and estado.valorCasilla(derecha, j) == 1:
-                            huecosCerrados += 20
+                            penalizacion += 20
 
                     elif derecha > estado.numeroColumnas() - 1:
                         # Comprobamos casillas: izquierda, arriba, abajo
                         if estado.valorCasilla(izquierda, j) == 1 and estado.valorCasilla(i, arriba) == 1 \
                                 and estado.valorCasilla(i, abajo) == 1:
-                            huecosCerrados += 20
+                            penalizacion += 20
                 # Si no se sale del rango, comprobamos casillas: arriba, abajo, derecha, izquierda
                 elif estado.valorCasilla(derecha, j) == 1 and estado.valorCasilla(izquierda, j) == 1 \
                      and estado.valorCasilla(i, arriba) == 1 and estado.valorCasilla(i, abajo) == 1:
-                    huecosCerrados += 20
+                    penalizacion += 20
 
-    return huecosCerrados
+    return penalizacion
 
 # menuPrincipal: método que representa al menú principal por pantalla.
 def menuPrincipal():
