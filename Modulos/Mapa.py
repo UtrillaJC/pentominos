@@ -16,11 +16,11 @@ class Mapa:
 
     # Método que devuelve cuántas columnas hay
     def numeroColumnas(self):
-        return len(self.map[0])
+        return self.columnas
 
     # Método que devuelve cuántas filas hay
     def numeroFilas(self):
-        return len(self.map)
+        return self.filas
 
     # Método que devuelve si una celda está ocupada o no
     def valorCasilla(self, fila, columna):

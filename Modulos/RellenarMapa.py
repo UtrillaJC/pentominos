@@ -23,7 +23,7 @@ class RellenarMapa(probee.Acción):
         # El nuevo estado será el mapa actualizado
         return nuevo_estado
 
-    def coste(self, estado):
+    def coste_de_aplicar(self, estado):
         """if self.ficha.letraFicha == 'I':
             return 2
         else:

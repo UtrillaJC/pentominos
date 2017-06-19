@@ -199,8 +199,9 @@ def menuBusquedaNoInformada():
     # Ejecutamos el algoritmo correspondiente
     if eleccion.lower() == '1':
         bProfundidad = busquee.BúsquedaEnProfundidad(detallado=True)
-        print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bProfundidad.buscar, problemaPentominos),
-                                                         number=1))
+        # print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bProfundidad.buscar, problemaPentominos),
+        #                                                number=1))
+        print(bProfundidad.buscar(problemaPentominos))
         # print("Tiempo de ejecución: %f" % timeit.repeat(functools.partial(bProfundidad.buscar, problemaPentominos),
         #                                               repeat=4, number=1))
         input("Pulse una tecla para volver al menú principal")
@@ -208,6 +209,7 @@ def menuBusquedaNoInformada():
         bAnchura = busquee.BúsquedaEnAnchura(detallado=True)
         print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bAnchura.buscar, problemaPentominos),
                                                         number=1))
+        # print(bAnchura.buscar(problemaPentominos))
         # print("Tiempo de ejecución: %f" % timeit.repeat(functools.partial(bAnchura.buscar, problemaPentominos),
         #                                               repeat=2, number=1))
         input("Pulse una tecla para volver al menú principal")
@@ -240,6 +242,7 @@ def menuBusquedaInformada():
         bPrimeroElMejor = busquee.BúsquedaPrimeroElMejor(h1, detallado=True)
         print("Tiempo de ejecución: %f" % timeit.timeit(functools.partial(bPrimeroElMejor.buscar, problemaPentominos),
                                                         number=1))
+
         # print("Tiempo de ejecución: %f" % timeit.repeat(functools.partial(bPrimeroElMejor.buscar, problemaPentominos),
         #                                               repeat=2, number=1))
         input("Pulse una tecla para volver al menú principal")
