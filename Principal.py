@@ -23,16 +23,24 @@ def definicionProblema():
     global numFilas, numColumnas
 
     # Mientras filas no tenga un valor asignado...
-    while not numFilas:
+    while not numFilas or numFilas < 3:
         try:
             numFilas = int(input("Elija el nº de filas: "))
+
+            if numFilas < 3:
+                raise ValueError
+
         except ValueError:
             print("Los datos introducidos no son correctos")
 
     # Mientras columnas no tenga un valor asignado...
-    while not numColumnas:
+    while not numColumnas or numColumnas < 3:
         try:
             numColumnas = int(input("Elija el nº de columnas: "))
+
+            if numColumnas < 3:
+                raise ValueError
+
         except ValueError:
             print("Los datos introducidos no son correctos")
 
@@ -219,6 +227,7 @@ def menuBusquedaNoInformada():
         salir()
     else:
         menu_acciones['2']()
+
     volver()
     return
 
@@ -268,6 +277,7 @@ def menuBusquedaInformada():
     else:
         menu_acciones['1']()
 
+    volver()
     return
 
 # volver: método que vuelve al menu principal
