@@ -1,7 +1,7 @@
 missing module named resource - imported by posix, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
 missing module named posix - imported by os, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
 missing module named _posixsubprocess - imported by subprocess, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
-missing module named org - imported by pickle, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
+missing module named 'org.python' - imported by pickle, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py, xml.sax
 missing module named readline - imported by cmd, code, pdb, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
 excluded module named _frozen_importlib - imported by importlib, importlib.abc, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
 missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
@@ -14,4 +14,4 @@ missing module named termios - imported by tty, C:\Desarrollo\Workspaces\IA\Pent
 missing module named grp - imported by tarfile, shutil, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
 missing module named pwd - imported by posixpath, tarfile, shutil, http.server, webbrowser, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py, netrc, getpass
 missing module named _dummy_threading - imported by dummy_threading, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
-missing module named 'org.python' - imported by copy, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py, xml.sax
+missing module named org - imported by copy, C:\Desarrollo\Workspaces\IA\Pentonimos\Principal.py
